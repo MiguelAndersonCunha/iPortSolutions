@@ -1,0 +1,27 @@
+.saida_hoje {
+    width: 100px;
+    height: 100px;
+    background-color:blue;
+}
+
+.saida_2dias {
+    width: 100px;
+    height: 100px;
+    background-color:lightgreen;
+}
+
+.saida_4dias {
+    width: 100px;
+    height: 100px;
+    background-color:red;
+}
+
+.saida_longe {
+    width: 100px;
+    height: 100px;
+    background-color:gray;
+}
+
+.escondido {
+    display:none;
+}

@@ -1,34 +1,14 @@
-﻿<link rel="stylesheet" href=~/css/site.css />
-<script src="~/js~/js/site.js"></script>
-<button id="adicionar">Adicionar</button>
-<div class="patio">
-   @* <div>
+﻿@{
+    ViewData["Title"] = "Pátio";
+}
 
+<div class="cabecalho">
+    <h2>Visualização do Pátio</h2>
+    <div class="legenda">
+        <div><span class="caixa padrao"></span> Padrão</div>
+        <div><span class="caixa hoje"></span> Saída Hoje</div>
+        <div><span class="caixa atrasado"></span> Saída Atrasada</div>
     </div>
-
-    <div>
-
-    </div>
-
-    <div>
-  
-    </div>
-
-    <div>
-       
-    </div>*@ <- "Containers"
 </div>
-
-<div class="form">
-    <label>Código</label>
-    <input id="codigo" type="text" required/>
-    
-    <label>Data-Entrada: </label>
-    <input id="data_entrada" type="text" required/>
-
-    
-    <label>Data-Saída</label>
-    <input id="data_saida" type="text" required/>
-
-    <button id="cadastrar">Cadastrar</button>
+<div id="visualizacao-patio" class="grid-patio">
 </div>

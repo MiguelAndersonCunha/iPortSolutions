@@ -1,11 +1,50 @@
-﻿fetch('/JSON/dados.json')
-.then(response => response.json())
-.then(dados => {
-    console.log(dados);
-})
+﻿const patio = document.getElementById('visualizacao-patio');
+function carregarDados() {
+    fetch('/api/container')
+    .then(response => {
+        if (!response.ok) throw new Error('Erro ao carregar dados do servidor.');
+        return response.json();
+    })
+    .then(data => {
+        patio.innerHTML = "";
+        const hoje = new Date();
 
-.catch(erro => console.error('Erro ao ler JSON:', erro));
+        for (let i = 0; i < data.data.length; i++) {
+            const saida = new Date(data.data[i].saida);
+            const diferenca_ms = saida - hoje;
+            const diferenca_dias = Math.ceil(diferenca_ms / (1000 * 60 * 60 * 24));
+            let classe = "caixa_container ";
 
+            if (diferenca_dias < 0) {
+                classe += "saida_atrasada";
+            }
+
+            else if (diferenca_dias === 0 || diferenca_dias === 1) {
+                classe += "saida_hoje";
+            }
+
+            else if (diferenca_dias === 2 || diferenca_dias === 3) {
+                classe += "saida_2dias";
+            }
+
+            else if (diferenca_dias === 4) {
+                classe += "saida_4dias";
+            }
+
+            else {
+                classe += "saida_longe";
+            }
+
+            patio.innerHTML += `<div class="${classe}">${data.data[i].container}</div>`;
+        }
+
+        console.log(data);
+    })
+
+    .catch(erro => console.error('Erro ao ler JSON:', erro));
+}
+
+carregarDados();
 
 const botao_adicionar = document.getElementById('btn_adicionar');
 const formulario = document.getElementById('form_infos');
@@ -80,6 +119,7 @@ botao_cadastrar.addEventListener('click', function (e) {
         inputCodigo.value = "";
         inputEntrada.value = "";
         inputSaida.value = "";
+        carregarDados();
     })
 
     .catch(erro => console.error(erro));

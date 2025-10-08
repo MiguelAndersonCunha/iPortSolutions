@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 public class ContainerController: ControllerBase
 {
     [HttpPost]
-
     public IActionResult Post([FromBody] Container container)
     {
         if (container == null || string.IsNullOrEmpty(container.container))
@@ -20,10 +19,19 @@ public class ContainerController: ControllerBase
             patio = new Patio { data = new List<Container>() };
         patio.data.Add(container);
 
-        var novoJson = JsonSerializer.Serialize(patio, new JsonSerializerOptions { WriteIndented = true });
+        var novoJson = JsonSerializer.Serialize(patio, new JsonSerializerOptions { WriteIndented = true});
         System.IO.File.WriteAllText(caminho, novoJson);
 
         return Ok(container);
+    }
+
+    [HttpGet]
+    public IActionResult Get()
+    {
+        var caminho = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "JSON", "dados.json");
+        var json = System.IO.File.ReadAllText(caminho);
+        var patio = JsonSerializer.Deserialize<Patio>(json);
+        return Ok(patio);
     }
 }
 

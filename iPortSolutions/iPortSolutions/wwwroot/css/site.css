@@ -92,6 +92,18 @@ body {
     border-color: var(--status-late-color);
 }
 
+.legenda .caixa.dias2 {
+    border-color: blue;
+}
+
+.legenda .caixa.dias4 {
+    border-color:yellow;
+}
+
+.legenda .caixa.longe {
+    border-color:gray;
+}
+
 .grid-patio {
     display: grid;
     gap: 10px;
@@ -217,4 +229,34 @@ body {
 
 #form_infos #btn_cadastrar:hover {
     background-color: #00cc66;
+}
+
+.caixa_container {  
+    width:300px;
+    height:300px;
+}
+
+.saida_atrasada {
+    background-color: red;
+    color: white;
+}
+
+.saida_hoje {
+    background-color: green;
+    color: white;
+}
+
+.saida_2dias {
+    background-color: blue;
+    color: white;
+}
+
+.saida_4dias {
+    background-color: yellow;
+    color: white;
+}
+
+.saida_longe {
+    background-color: gray;
+    color: white;
 }

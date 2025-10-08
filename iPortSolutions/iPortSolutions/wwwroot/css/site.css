@@ -105,7 +105,8 @@ body {
 }
 
 .grid-patio {
-    display: grid;
+    display: flex;
+    flex-wrap:wrap;
     gap: 10px;
     flex-grow: 1;
     overflow: auto;

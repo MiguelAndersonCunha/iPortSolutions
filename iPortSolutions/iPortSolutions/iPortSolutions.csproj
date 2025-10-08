@@ -6,4 +6,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="wwwroot\JSON\Dados.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\JSON\dados.json" />
+  </ItemGroup>
+
 </Project>

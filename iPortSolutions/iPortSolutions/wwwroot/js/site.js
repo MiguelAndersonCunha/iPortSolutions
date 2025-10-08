@@ -1,54 +1,87 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
-    // SELETORES DE ELEMENTOS DOM 
-    const visualizacaoPatio = document.getElementById('visualizacao-patio');
-    const detalhesContainer = document.getElementById('detalhes-container');
+﻿fetch('/JSON/dados.json')
+.then(response => response.json())
+.then(dados => {
+    console.log(dados);
+})
 
-    // Elementos do formulário de adição
-    const btnAdicionar = document.getElementById('btn_adicionar');
-    const formInfos = document.getElementById('form_infos');
-    const inputNome = document.getElementById('input_nome');
-    const inputChegada = document.getElementById('input_chegada');
-    const inputSaida = document.getElementById('input_saida');
+.catch(erro => console.error('Erro ao ler JSON:', erro));
 
-    // LÓGICA PARA ADICIONAR CONTÊINER 
 
-    // 1. Mostrar/Esconder o formulário
-    btnAdicionar.addEventListener('click', () => {
-        formInfos.classList.toggle('visivel');
-        // Esconde os detalhes do contêiner se estiverem visíveis
-        if (formInfos.classList.contains('visivel')) {
-            detalhesContainer.classList.add('escondido');
-        }
-    });
+const botao_adicionar = document.getElementById('btn_adicionar');
+const formulario = document.getElementById('form_infos');
+const inputCodigo = document.getElementById('input_codigo');
+const inputEntrada = document.getElementById('input_entrada');
+const inputSaida = document.getElementById('input_saida');
 
-    // 2. Cadastro no submit do formulário
-    formInfos.addEventListener('submit', function (e) {
-        e.preventDefault(); 
+botao_adicionar.addEventListener('click', function (e) {
+    e.preventDefault();
 
-        const nome = inputNome.value.trim().toUpperCase();
-        const chegada = inputChegada.value;
-        const saida = inputSaida.value;
+    if (formulario.classList.contains('visivel')) {
+        formulario.classList.remove('visivel');
+    }
 
-        if (!nome || !chegada || !saida) {
-            alert('Por favor, preencha todos os campos.');
-            return;
-        }
+    else {
+        formulario.classList.add('visivel');
+    }
+});
 
-        const novoContainer = {
-            bay: localVago.bay,
-            row: localVago.row,
-            tier: localVago.tier,
-            container: nome,
-            entrada: chegada,
-            saida: saida
-        };
+const botao_cadastrar = document.getElementById('btn_cadastrar');
 
-        patioData.data.push(novoContainer);
-        renderPatio();
+botao_cadastrar.addEventListener('click', function (e) {
+    e.preventDefault();
 
-        formInfos.reset();
-        formInfos.classList.remove('visivel');
-        alert(`Contêiner ${nome} adicionado com sucesso na posição ${localVago.bay}-${localVago.row}-${localVago.tier}!`);
-    });
+    if (inputCodigo.value === "") {
+        inputCodigo.setCustomValidity("O código não pode ser vazio!");
+        inputCodigo.reportValidity();
+        return;
+    }
 
+    if (inputEntrada.value === "") {
+        inputEntrada.setCustomValidity("A data de entrada não pode ser vazia!");
+        inputEntrada.reportValidity();
+        return;
+    }
+
+    if (inputSaida.value === "") {
+        inputSaida.setCustomValidity("A data de saída não pode ser vazia!");
+        inputSaida.reportValidity();
+        return;
+    }
+
+    if (inputSaida.value < inputEntrada.value) {
+        inputSaida.setCustomValidity("A data de saída não pode ser menor que a data de entrada!");
+        inputSaida.reportValidity();
+        inputSaida.value = "";
+        return;
+    }
+
+    const container = {
+        bay: 1,
+        row: 1,
+        tier: 1,
+        container: inputCodigo.value,
+        entrada: inputEntrada.value,
+        saida: inputSaida.value
+    };
+
+    fetch('/api/container', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(container)
+    })
+
+    .then(response => {
+        if (!response.ok) throw new Error('Erro ao cadastrar contâiner.');
+        return response.json();
+    })
+
+    .then(data => {
+        alert(`Contâiner ${data.container} cadastrado com sucesso!`);
+        inputCodigo.value = "";
+        inputEntrada.value = "";
+        inputSaida.value = "";
+    })
+
+    .catch(erro => console.error(erro));
+    
 });

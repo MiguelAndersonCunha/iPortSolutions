@@ -1,4 +1,3 @@
-/* Definição de variáveis de cor para o tema escuro */
 :root {
     --bg-color: #1a1a1a;
     --sidebar-color: #101010;
@@ -6,11 +5,10 @@
     --font-color: #e0e0e0;
     --border-color: #444;
     --accent-color: #00aaff;
-    --status-ok-color: #00ff7f; /* Verde-primavera */
-    --status-late-color: #ff4757; /* Vermelho-coral */
+    --status-ok-color: #00ff7f;
+    --status-late-color: #ff4757;
 }
 
-/* Reset e Estilos Globais */
 * {
     margin: 0;
     padding: 0;
@@ -27,7 +25,6 @@ body {
     height: 100vh;
 }
 
-/* Layout Principal */
 .container-principal {
     display: flex;
     width: 95vw;
@@ -47,11 +44,11 @@ body {
     flex-direction: column;
 }
 
-    .barra-lateral h1 {
-        font-size: 2rem;
-        margin-bottom: 30px;
-        color: var(--accent-color);
-    }
+.barra-lateral h1 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: var(--accent-color);
+}
 
 .area-conteudo {
     flex-grow: 1;
@@ -73,30 +70,28 @@ body {
     gap: 20px;
 }
 
-    .legenda div {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 0.8rem;
-    }
+.legenda div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+}
 
-    .legenda .caixa {
-        width: 15px;
-        height: 15px;
-        border: 2px solid var(--border-color);
-        border-radius: 3px;
-    }
+.legenda .caixa {
+    width: 15px;
+    height: 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 3px;
+}
 
-        .legenda .caixa.hoje {
-            border-color: var(--status-ok-color);
-        }
+.legenda .caixa.hoje {
+    border-color: var(--status-ok-color);
+}
 
-        .legenda .caixa.atrasado {
-            border-color: var(--status-late-color);
-        }
+.legenda .caixa.atrasado {
+    border-color: var(--status-late-color);
+}
 
-
-/* Grid do Pátio de Contêineres */
 .grid-patio {
     display: grid;
     gap: 10px;
@@ -109,7 +104,7 @@ body {
 
 .coluna-bay {
     display: flex;
-    flex-direction: column-reverse; /* Empilha de baixo para cima */
+    flex-direction: column-reverse;
     gap: 5px;
     background-color: #333;
     padding: 5px;
@@ -130,41 +125,38 @@ body {
     font-weight: bold;
 }
 
-    .caixa-container:hover {
-        transform: scale(1.05);
-        background-color: var(--accent-color);
-    }
+.caixa-container:hover {
+    transform: scale(1.05);
+    background-color: var(--accent-color);
+}
 
-    .caixa-container.status-hoje {
-        border-color: var(--status-ok-color);
-    }
+.caixa-container.status-hoje {
+    border-color: var(--status-ok-color);
+}
 
-    .caixa-container.status-atrasado {
-        border-color: var(--status-late-color);
-    }
+.caixa-container.status-atrasado {
+    border-color: var(--status-late-color);
+}
 
 
-/* Painel de Informações */
 .painel-info {
     border-top: 1px solid var(--border-color);
     padding-top: 20px;
 }
 
-    .painel-info p {
-        margin-bottom: 10px;
-        line-height: 1.6;
-    }
+.painel-info p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
 
-    .painel-info strong {
-        color: var(--accent-color);
-    }
+.painel-info strong {
+    color: var(--accent-color);
+}
 
 .escondido {
     display: none;
 }
 
-
-/* ===== NOVOS ESTILOS PARA O FORMULÁRIO DE ADIÇÃO ===== */
 
 .adicionar button {
     width: 100%;
@@ -181,48 +173,48 @@ body {
     margin-bottom: 20px;
 }
 
-    .adicionar button:hover {
-        background-color: #0088cc;
-    }
+.adicionar button:hover {
+    background-color: #0088cc;
+}
 
 #form_infos {
     display: flex;
     flex-direction: column;
     gap: 15px;
     overflow: hidden;
-    max-height: 0; /* Começa escondido */
-    opacity: 0; /* Começa transparente */
-    transition: max-height 0.5s ease-out, opacity 0.5s ease-out; /* Animação suave */
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
 }
 
-    #form_infos.visivel {
-        max-height: 300px; /* Altura suficiente para mostrar o form */
-        opacity: 1;
-    }
+#form_infos.visivel {
+    max-height: 300px;
+    opacity: 1;
+}
 
-    #form_infos input, #form_infos label {
-        width: 100%;
-        font-family: 'Roboto Mono', monospace;
-    }
+#form_infos input, #form_infos label {
+    width: 100%;
+    font-family: 'Roboto Mono', monospace;
+}
 
-    #form_infos label {
-        font-size: 0.8rem;
-        color: #aaa;
-        margin-bottom: -10px; /* Aproxima a label do input */
-    }
+#form_infos label {
+    font-size: 0.8rem;
+    color: #aaa;
+    margin-bottom: -10px;
+}
 
-    #form_infos input {
-        padding: 10px;
-        background-color: var(--content-bg);
-        border: 1px solid var(--border-color);
-        border-radius: 4px;
-        color: var(--font-color);
-    }
+#form_infos input {
+    padding: 10px;
+    background-color: var(--content-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--font-color);
+}
 
-    #form_infos #btn_cadastrar {
-        background-color: var(--status-ok-color);
-    }
+#form_infos #btn_cadastrar {
+    background-color: var(--status-ok-color);
+}
 
-        #form_infos #btn_cadastrar:hover {
-            background-color: #00cc66;
-        }
+#form_infos #btn_cadastrar:hover {
+    background-color: #00cc66;
+}
